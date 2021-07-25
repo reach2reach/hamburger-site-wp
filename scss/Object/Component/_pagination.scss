@@ -1,0 +1,76 @@
+.c-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 30px 30px 30px;
+    @include mq(tab) {
+        justify-content: center;
+        padding: 50px 0 15px 0px;
+    }
+
+    @include mq(pc) {
+        padding: 65px 0 35px 0px;
+    }
+
+    &__page-numbers{
+        display: none;
+        color: $dark-gray;
+        font-size: 0.7rem;
+        font-weight: 500;
+
+        @include mq(tab) {
+           display: block;
+        }
+    }
+    
+    &__page-numbers--prev {
+        color: $dark-gray;
+        font-size: 1.2rem;
+        @include mq(tab){
+            display: none;
+        }
+    }
+
+    &__page-numbers__list{
+        display: none;
+        @include mq(tab){
+            display: flex;
+        }
+        & li{
+            padding: 6px; //次のリストまでの間隔調整
+            color: $dark-gray;
+            &:first-child{
+                padding-top: 10px;
+            }
+            &:last-child{
+                padding-top: 10px;
+            }
+        }
+
+        & a {
+            display: none;
+            background-color: $first-white;
+            color: $dark-gray ;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 5px 8px; //border内の幅調整
+            border: 1px solid $dark-gray;
+
+            @include mq(tab){
+                display: block;
+            }
+        }
+        .current{
+            background-color: $brown;
+            color: $first-white;
+        }
+    }
+
+    &__page-numbers--next{
+        color: $dark-gray;
+        font-size: 1.2rem;
+        @include mq(tab){
+            display: none;
+        }
+    } 
+}

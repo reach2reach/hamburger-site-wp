@@ -1,0 +1,156 @@
+.c-button__search-btn{
+    width: 5rem;
+    height: 2.8rem;
+    margin-left: 10px;
+    background-color: $bg-dark-beige;
+    border-radius: 10px;
+    border: solid 1px $dark-gray;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: $dark-gray;
+    cursor: pointer;
+
+    @include mq(tab){
+        width: 6rem;
+        height: 2.0rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-left: 6px;   
+    }
+
+    @include mq(pc){
+        width: 4.5rem;
+        height: 26px;
+        border-radius: 5px;
+        font-size: 6px;
+        margin:10px 5px 3px 0px;  
+    }
+}
+
+.c-button--menu{
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    color: $dark-gray;
+    font-family: 'Roboto' ;
+    font-size: 1.3rem;
+    font-weight: 500;
+    z-index: 400;
+    cursor: pointer;
+
+    @include mq(tab){
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    @include mq(pc){
+        display: none;
+    }
+
+    &.is-open{
+    display: none;
+    }
+}
+
+.c-button--menu__close{
+    display: none;
+    z-index: 400;
+
+    &.is-open{
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+
+        &::before{
+            position: absolute;
+            top: 25px;
+            content: "";
+            width: 40px;
+            height: 5px;
+            background-color:$dark-gray;
+            transform: rotate(45deg);
+
+            @include mq(tab){
+                width: 33px;
+                height: 4px;
+            }
+        }
+        &::after{
+            position: absolute;
+            top: 25px;
+            content: "";
+            width: 40px;
+            height: 5px;
+            background-color:$dark-gray;
+            transform: rotate(-45deg);
+
+            @include mq(tab){
+                width: 33px;
+                height: 4px;
+            }
+        }
+    }
+}  
+
+//archive-page//
+.c-button--detail{
+    display: block;
+    width: 170px;
+    height: 42px;
+    margin: 15px auto 40px auto;
+    text-align: center;
+    padding:8px 0px;
+    background-color: $first-white;
+    border-radius: 30px;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: $dark-gray;
+    cursor: pointer;
+
+    @include mq(tab){
+        width: 128px;
+        height: 32px;
+        font-size: 0.8rem;
+        padding: 6px 0;
+        margin:10px auto 28px auto;  //左右autoにすることでちょうど中間にくる
+    }
+
+    @include mq(pc){
+        width: 170px;
+        height: 40px;
+        padding: 11px 0;
+        margin:10px auto 20px auto; 
+    }
+}
+
+//single-page
+.c-button{
+    width: 100%;
+    height: 14vh;
+    text-align: center;
+    background-color: $bg-dark-beige;
+    border: solid 1px $dark-gray;
+    border-radius: 25px;
+    font-size: 1.0rem;
+    font-weight: 600;
+    color: $brown;
+    cursor: pointer;
+
+    @include mq(tab){
+        width: 60%;
+        font-size: 0.8rem;
+        border-radius: 20px;
+        height: 13vh;
+    }
+    @include mq(pc){
+        width: 28%;
+        //font-size: 0.7rem;
+        border-radius: 15px;
+        height: 10vh;
+    }  
+}

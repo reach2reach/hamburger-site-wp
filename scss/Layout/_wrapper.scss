@@ -1,0 +1,48 @@
+.l-wrapper{
+    position: relative;
+    width: 100%;
+    height:auto;
+
+    //画面全体を覆うfade layer//
+    #fadeLayer { 
+        position:fixed;
+        top:0px;
+        left:0px;
+        width:100%;
+        height:100%;
+        background-color:$black;
+        opacity:0.5;
+        visibility:hidden;
+        z-index:250;
+
+        &.is-open{
+            visibility: visible;
+            animation: fadeIn 1.0s linear forwards;
+            //linear--開始から終了まで一定に変化
+            //forwards--アニメーションの再生後は、再生後（キーフレーム100%）の状態を維持
+
+            @keyframes fadeIn {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0.5;
+                }
+            }
+
+            @include mq(tab){
+                background-color: $dark-gray;
+                opacity: 0.8;
+
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }//#fadelayer.is-open
+    }//#fadelayer    
+}//l-wrapper

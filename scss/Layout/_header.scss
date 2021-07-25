@@ -1,0 +1,7 @@
+.l-header{
+    width: 100%;
+    
+    @include mq(pc){
+        width: 80%;
+    }
+}
