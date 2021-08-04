@@ -1,0 +1,14 @@
+.p-text--bold{
+    font-weight: 600;
+    color: $brown;
+    padding: 30px 0 70px 0;
+
+    @include mq(tab){
+        font-size: 0.75rem;
+        padding: 42px 0 48px 0;
+    }
+    @include mq(pc){
+        font-size: 0.8rem;
+        padding: 30px 0 100px 0;
+    }
+}

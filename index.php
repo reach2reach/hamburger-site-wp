@@ -9,33 +9,44 @@
 
             <div class="l-main-wrapper">
                 <article class="p-main__article--TakeOut">
-                    <h3 class="p-main__article__title--TakeOut">
-                        <a href="#">Take Out</a>
+
+                <!--TakeOutカテゴリー取得--archiveページへ--> 
+            <?php       
+                $cat = get_cat_ID('Take Out'); //カテゴリー名からカテゴリーIDを取得
+                $cat_link = get_category_link($cat);//取り出したカテゴリーIDをget_category_linkに指定
+            ?>
+                    <h3 class='p-main__article__title--TakeOut'>
+                        <a href="<?php echo $cat_link ?>">Take Out</a> <!--指定したカテゴリーページのURLを出力-->
                     </h3>
                     <div class="l-TakeOut__section">
+                    
                         <section class="l-TakeOut__list p-TakeOut__list">
-                            <h4>Take OUT</h4>
-                            <p>当店のテイクアウトで利用できる商品を掲載しています</p>
+                            <h4>Take Out</h4>
+                            <a href="<?php echo $cat_link ?>">当店のテイクアウトで利用できる商品を掲載しています</a>
                         </section>
                         <section class="l-TakeOut__list p-TakeOut__list">
-                            <h4>Take OUT</h4>
-                            <p>当店のテイクアウトで利用できる商品を掲載しています</p>
+                            <h4>Take Out</h4>
+                            <a href="<?php echo $cat_link ?>">当店のテイクアウトで利用できる商品を掲載しています</a>
                         </section>
                     </div>
                 </article>
 
                 <article class="p-main__article--EatIn">
+                <?php       
+                    $cat = get_cat_ID('Eat In');
+                    $cat_link = get_category_link($cat);
+                ?>
                     <h3 class="p-main__article__title--EatIn">
-                        <a href="#">Eat In</a>
+                        <a href="<?php echo $cat_link ?>">Eat In</a>
                     </h3>
                     <div class="l-TakeOut__section">
                         <section class="l-TakeOut__list p-TakeOut__list">
-                            <h4>Take OUT</h4>
-                            <p>当店のテイクアウトで利用できる商品を掲載しています</p>
+                            <h4>Eat In</h4>
+                            <a href="<?php echo $cat_link ?>">当店の店内で利用できる商品を掲載しています</a>
                         </section>
                         <section class="l-TakeOut__list p-TakeOut__list">
-                            <h4>Take OUT</h4>
-                            <p>当店のテイクアウトで利用できる商品を掲載しています</p>
+                            <h4>Eat In</h4>
+                            <a href="<?php echo $cat_link ?>">当店の店内で利用できる商品を掲載しています</a>
                         </section>
                     </div>
                 </article>

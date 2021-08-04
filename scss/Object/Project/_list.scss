@@ -1,0 +1,36 @@
+.p-list{
+    color: $brown;
+    @include mq(tab){
+        padding:50px 0 10px 0;
+        font-size: 0.75rem;
+    }
+    @include mq(pc){
+        //font-size: 0.7rem;
+        padding: 40px 0 0px 30px;
+    }
+    
+    &--block1{
+        padding-bottom: 30px;
+        @include mq(tab){
+            padding-bottom: 15px;
+        }
+        @include mq(pc){
+            padding: 0;
+        }
+    }
+    &--block2{
+        padding: 30px 0;
+        @include mq(pc){
+            padding: 35px 0;
+        }
+    }
+    &__item--b{
+        padding: 20px;
+        @include mq(tab){
+            padding:15px;
+        }
+        @include mq(pc){
+            padding: 10px;
+        }
+    }
+}

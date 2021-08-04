@@ -1,5 +1,15 @@
 .l-main{
     width: 100%;
+    min-height: 600px;//WP化の時に追加。
+
+    @include mq(tab){
+        min-height: 800px;//WP化の時に追加。
+    }
+    @include mq(pc){
+        min-height: 1000px; //WP化の時に追加。mainに高さがないと,mainのcontentsが少ない時にfooterとsidebarが重なってしまう。
+
+    }
+    
 }
 
 .l-main-wrapper{

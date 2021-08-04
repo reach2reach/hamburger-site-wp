@@ -1,76 +1,81 @@
-.c-pagination {
+.wp-pagenavi{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
-    padding: 40px 30px 30px 30px;
+    padding: 50px 0px 30px 0px;
     @include mq(tab) {
         justify-content: center;
         padding: 50px 0 15px 0px;
     }
 
     @include mq(pc) {
-        padding: 65px 0 35px 0px;
+        padding: 90px 0 40px 0px;
     }
 
-    &__page-numbers{
+    .pages{
         display: none;
+        border-style: none;
         color: $dark-gray;
-        font-size: 0.7rem;
+        font-size: 1rem;
         font-weight: 500;
 
         @include mq(tab) {
            display: block;
-        }
-    }
-    
-    &__page-numbers--prev {
-        color: $dark-gray;
-        font-size: 1.2rem;
-        @include mq(tab){
-            display: none;
+           margin-top: 15px;
         }
     }
 
-    &__page-numbers__list{
+    .previouspostslink{
+        display: flex;
+        align-items: center;
+        border-style: none;
+        font-size: 3rem;
+        color: $dark-gray;
+        @include mq(tab) {
+            margin-top: 5px;
+        }
+        &::after {
+            font-size: 1.2rem;
+            content: "前へ";
+            padding: 5px 0 0 15px;
+            @include mq(tab) {
+                display: none;
+            }
+        }
+    }
+
+    .page,.current{
         display: none;
-        @include mq(tab){
-            display: flex;
-        }
-        & li{
-            padding: 6px; //次のリストまでの間隔調整
-            color: $dark-gray;
-            &:first-child{
-                padding-top: 10px;
-            }
-            &:last-child{
-                padding-top: 10px;
-            }
-        }
+        color: $dark-gray;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 6px 9px;
+        margin: 10px 15px 0 15px;
 
-        & a {
-            display: none;
-            background-color: $first-white;
-            color: $dark-gray ;
-            font-size: 0.8rem;
-            font-weight: 500;
-            padding: 5px 8px; //border内の幅調整
-            border: 1px solid $dark-gray;
-
-            @include mq(tab){
-                display: block;
-            }
-        }
-        .current{
-            background-color: $brown;
-            color: $first-white;
+        @include mq(tab) {
+           display: flex;
         }
     }
-
-    &__page-numbers--next{
+    .current{
+        background-color: $brown;
+        color: $first-white;
+    }
+    .nextpostslink{
+        display: flex;
+        align-items: center;
+        border-style: none;
+        font-size: 3rem;
         color: $dark-gray;
-        font-size: 1.2rem;
-        @include mq(tab){
-            display: none;
+        @include mq(tab) {
+            margin-top: 4px;
         }
-    } 
+        &::before {
+            font-size: 1.2rem;
+            content: "次へ";
+            padding: 5px 15px 0 0;
+            @include mq(tab) {
+                display: none;
+            }
+        }
+    }
 }

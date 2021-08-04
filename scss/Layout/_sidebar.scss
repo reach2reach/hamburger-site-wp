@@ -1,7 +1,8 @@
 .l-sidebar{
     @include mq(pc){
         width: 20%;
-        height: 100%; //WP化の時に高さに隙間がでたので100%へ変換
+        height: 100%; //WP化の時,高さに隙間がでたので100%へ変換
+        //height: calc(100% - 80px); //pcサイズの時、footerの高さを引く
         position: absolute;
         top: 0;
         right: 0;   

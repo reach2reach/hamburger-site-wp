@@ -13,53 +13,32 @@
         @include mq(pc){
             padding: 15px 0;
         }
-
-        &__shop{
-            position: relative;
-            color:$first-white;
-            font-size: 1.2rem;
-            padding-right:25px;
-
-            @include mq(tab){
-                font-size: 0.95rem;
+    }
+        //WP化ーナビゲーションメニュー設定時スタイリング
+        .menu>ul{
+            display: flex;
+        
+            .page_item>a{
+                color: $first-white; 
             }
-            @include mq(pc){
-                font-size: 0.7rem;
-            }
-            &::after{
-                position: absolute;
-                content: "";
-                background-color:$first-white;
-                width: 1.6px;
-                height: 1.2rem;
-                top: 3px;
-                left: 129px;
+            .page-item-12{
+                position: relative;
+                padding-right:25px;
+                &::after{
+                    position: absolute;
+                    content: "";
+                    background-color:$first-white;
+                    width: 1.6px;
+                    height: 1.2rem;
+                    top: 3px;
+                    left: 108px;
                     @include mq(tab){
                         height:1rem;
                         width:1px;
-                        left: 105px;
-                        top: 1px;
                     } 
-                    @include mq(pc){
-                        height: 0.7rem;
-                        left:80px ;  
-                    }
-                }  
-            }   
-
-        &__history{
-            color: $first-white;
-            font-size: 1.2rem;
-
-                @include mq(tab){
-                font-size: 0.95rem;
-                }
-                @include mq(pc){
-                    font-size: 0.7rem;
                 }
             }
-        }
-
+        }   
     >p{
         color: $first-white;
         padding-bottom: 30px;

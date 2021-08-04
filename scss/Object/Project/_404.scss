@@ -1,0 +1,46 @@
+//404.phpの編集//
+.p-main--404page{
+    margin: 100px 0 0 10px;
+    color: $brown;
+    >h2{
+        font-size: 1.4rem;
+        text-align: center;
+        @include mq(tab){
+            padding-top: 50px;
+            font-size: 1.6rem;
+        }
+        @include mq(pc){
+            text-align:left;
+            padding-left: 150px;
+        }
+    }
+    &__text{
+        padding-top: 30px;
+        @include mq(tab){
+            text-align: center;
+        }
+        @include mq(pc){
+            text-align:left;
+            padding-left: 150px;
+        }
+    }
+    &__url{
+        @include mq(tab){
+            text-align: center;
+        }
+        @include mq(pc){
+            text-align:left;
+            padding-left: 150px;
+        }
+    }
+    &__home{
+        padding-top: 30px;
+        @include mq(tab){
+            text-align: center;
+        }
+        @include mq(pc){
+            text-align:left;
+            padding-left: 150px;
+        }
+    }
+}

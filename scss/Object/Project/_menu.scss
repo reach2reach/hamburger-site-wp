@@ -1,0 +1,63 @@
+.p-menu{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+
+    @include mq(tab){
+        flex-direction: row;
+    }
+
+    &__img{
+        width: 100%;
+        object-fit: cover;
+        object-position:center;
+        @include mq(tab){
+            width: 50%;
+        }
+        @include mq(pc){
+            width: 43%; 
+        }
+    }
+
+    &__content{
+        width:100%;
+        background-color: $brown;
+        color: $first-white;
+        padding-left: 18px;
+        padding-top: 20px;
+
+        @include mq(tab){
+            width: 50%;
+            padding-top: 30px;
+        }
+
+        @include mq(pc){
+            width: 43%; 
+        }
+
+        &__title{
+            font-size: 1.3rem;
+            padding: 30px 0 25px 0;
+            @include mq(tab){
+                padding: 20px 0 20px 10px;
+            }
+            @include mq(pc){
+                font-size: 1.4rem;
+                padding: 25px 0 23px 15px; 
+            }
+        }
+        //WPバーションのスタイリング
+        >h4{
+            margin-left: 10px;
+            font-size: 1.6rem;
+        }
+        >h2{
+            text-align: left;
+            font-size: 1.2rem;
+            margin: 0 30px 10px 10px;
+        }
+        >p{
+            margin: 0 30px 50px 10px;
+        }
+    }
+}

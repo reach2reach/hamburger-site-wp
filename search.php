@@ -1,80 +1,12 @@
-<!doctype html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>Hamburger (ハンバーガー)</title>
-        <meta name="description" content="ハンバーガーサイト RaiseTech課題">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="http://mplus-webfonts.sourceforge.jp/mplus_webfonts.css">
-        <script src="https://kit.fontawesome.com/9c4b047b8f.js" crossorigin="anonymous"></script>
-        <link href="css/style.css" rel="stylesheet">     
-    </head>
+<?php get_header(); ?> 
 
-    <body>
-        <div class="l-wrapper">
-            <div id="fadeLayer"></div> <!--画面全体を覆うフェード用のレイヤ-->
-            <div class="c-button--menu"> 
-                <button class="c-button--menu is-menu">Menu</button>
-                <button class="c-button--menu__close is-menu"></button>
-            </div>
-            <header class="l-header p-header">
-                <h1 class="p-header__title">
-                    <a href="#">Hamburger</a>
-                </h1>
-                <form class="p-header__search">
-                    <input class="p-header__search-box fas fa-search" placeholder="&#xf002;" type="search">
-                    <input class="c-button__search-btn" type="submit" value="検索">
-                </form>
-            </header>
-    
-            <aside class="l-sidebar p-sidebar">
-                <nav class="p-global-nav">
-                    <p class="p-global-nav__title">Menu</p>
-                    <ul class="p-global-nav__menu">
-                        <li class="p-global-nav__menu__title"><a href="#">バーガー</a>
-                            <ul class="p-global-nav__menu__list">
-                                <li class="p-global-nav__menu__list__item"><a href="#">ハンバーガー</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">チーズバーガー</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">テリヤキバーガー</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">アボカドバーガー</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">フィッシュバーガー</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">ベーコンバーガー</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">チキンバーガー</a></li>
-                            </ul>
-                        </li>
-              
-                        <li class="p-global-nav__menu__title"><a href="#">サイド</a>
-                            <ul class="p-global-nav__menu__list">
-                                <li class="p-global-nav__menu__list__item"><a href="#">ポテト</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">サラダ</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">ナゲット</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">コーン</a></li>
-                            </ul>
-                        </li> 
-              
-                        <li class="p-global-nav__menu__title"><a href="#">ドリンク</a>
-                            <ul class="p-global-nav__menu__list">
-                                <li class="p-global-nav__menu__list__item"><a href="#">コーラ</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">ファンタ</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">オレンジ</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">アップル</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">紅茶（Ice/Hot）</a></li>
-                                <li class="p-global-nav__menu__list__item"><a href="#">コーヒー（Ice/Hot）</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+<?php get_sidebar(); ?>
 
             <main class="l-main p-main">
 
                 <div class="p-main-visual--archive">
                     <h2>Search:</h2>
-                    <p>チーズバーガー</p>
+                    <p><?php echo get_search_query(); ?></p> <!--検索単語を表記-->
                 </div>
     
                 <div class="l-main-wrapper--archive">
@@ -84,92 +16,53 @@
                     </section>
                     
                     <div class="l-menu-wrapper">
-                        <article class="l-menu p-menu">
-                            <img class="p-menu__img" src="../images/menu-cheezburger.png" alt="cheezburger">
-                            <section class="p-menu__content">
-                                <h4 class="p-menu__content__title">見出しが入ります</h4>
-                                <h5 class="p-menu__content__heading">小見出しが入ります</h5>
-                                <p class="p-menu__content__text">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
-                                <a href="#" class="c-button--detail">詳しく見る</a>
-                            </section>
-                        </article>
+                    <!--------ループ処理の作成-------->
+                        <section class="p-search">
+                            <?php if (isset($_GET['s']) && empty($_GET['s'])) {  //検索条件未入力時の場合
+	                        echo '検索条件が入力されていません。';?>
+                            <p class="p-search__result">
+                            <?php } else { 
+                                $str = $_GET['s']; // 検索文字列の取得
+                                $e_str = htmlspecialchars($str, ENT_QUOTES, "utf-8"); // 検索文字列のエスケープ処理
+                                echo '“'.$e_str .'”の検索結果：'.$wp_query->found_posts .'件です。'; // 検索キーワードと該当件数を表示
+                                }
+                            ?>
+                            </p> 
+                            <?php
+                                if (have_posts()) : //投稿データがあるかどうかの条件分岐＝表示させるデータがあるかどうか
+                                    while (have_posts()) : //表示させるデータがある場合はループし続ける
+                                        the_post(); ?> <!--$wp_queryから順にデータを取り出して「$post」へ格納し、次のデータへと進める-->
 
-                        <article class="l-menu p-menu">
-                            <img class="p-menu__img" src="../images/menu-cheezburger.png" alt="cheezburger">
-                            <section class="p-menu__content">
-                                <h4 class="p-menu__content__title">見出しが入ります</h4>
-                                <h5 class="p-menu__content__heading">小見出しが入ります</h5>
-                                <p class="p-menu__content__text">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
-                                <a href="#" class="c-button--detail">詳しく見る</a>
-                            </section>
-                        </article>
-
-
-                        <article class="l-menu p-menu">
-                            <img class="p-menu__img" src="../images/menu-cheezburger.png" alt="cheezburger">
-                            <section class="p-menu__content">
-                                <h4 class="p-menu__content__title">見出しが入ります</h4>
-                                <h5 class="p-menu__content__heading">小見出しが入ります</h5>
-                                <p class="p-menu__content__text">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
-                                <a href="#" class="c-button--detail">詳しく見る</a>
-                            </section>
-                        </article>
-
-                        <article class="l-menu p-menu">
-                            <img class="p-menu__img" src="../images/menu-cheezburger.png" alt="cheezburger">
-                            <section class="p-menu__content">
-                                <h4 class="p-menu__content__title">見出しが入ります</h4>
-                                <h5 class="p-menu__content__heading">小見出しが入ります</h5>
-                                <p class="p-menu__content__text">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
-                                <a href="#" class="c-button--detail">詳しく見る</a>
-                            </section>
-                        </article>
-
-                        <article class="l-menu p-menu">
-                            <img class="p-menu__img" src="../images/menu-cheezburger.png" alt="cheezburger">
-                            <section class="p-menu__content">
-                                <h4 class="p-menu__content__title">見出しが入ります</h4>
-                                <h5 class="p-menu__content__heading">小見出しが入ります</h5>
-                                <p class="p-menu__content__text">テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</p>
-                                <a href="#" class="c-button--detail">詳しく見る</a>
-                            </section>
-                        </article>
-                    </div>   
-                </div>
-
-                <div class="l-pagination">
-                    <section class="c-pagination">
-                        <p class="c-pagination__page-numbers">page 1/10</p>
-                        <a class="c-pagination__page-numbers--prev" href="#">&lt;&lt; 前へ</a>
+                        <!--ここからループさせたい内容を記述 ↓↓-->  
                         
-                        <ul class="c-pagination__page-numbers__list">
-                            <li>&lt;&lt;</li>
-                            <li><a class="current" href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">6</a></li>
-                            <li><a href="#">7</a></li>
-                            <li><a href="#">8</a></li>
-                            <li><a href="#">9</a></li>
-                            <li>&gt;&gt;</li>
-                        </ul>
-                        <a class="c-pagination__page-numbers--next" href="#">次へ &gt;&gt;</a>
-                    </section>          
-                </div>
-            </main>
+                        <!--投稿を囲む要素に自動でクラスを割り当て、種類によって異なるスタイルを当てることができる-->
+                        <article class="l-menu p-menu" id="post-<?php the_ID();?>" <?php post_class(); ?>>
 
-            <footer class="l-footer p-footer">
-                    <div class="p-footer__information">
-                     <a class="p-footer__information__shop" href="#">ショップ情報</a>
-                     <a class="p-footer__information__history" href="#">ヒストリー</a>
+                        <!--設定したアイキャッチ画像を出力する-->
+                            <img class="p-menu__img" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="<?php get_the_title(); ?>">
+                           
+                            <section class="p-menu__content">
+                                <h4 class="p-menu__content__title"><?php the_title(); ?></h4> 
+                                <?php the_excerpt(); ?> <!--抜粋文を出力する-->
+                                <a href="<?php the_permalink(); ?>" class="c-button--detail">詳しく見る</a> <!--投稿記事のURLを出力→singleページへ-->
+                            </section>
+                        </article>
+                            <?php endwhile; // ループ処理ここで終了。投稿データがまだあればwhileに戻る。
+                        else : // 表示する投稿がない場合は
+                                ?>
+                                  <p>入力画面に戻り，再度検索条件を指定してください。</p>
+                        <?php endif; ?> <!--if文の終わり-->
+                        </section>
                     </div>
-                    <p class="p-footer__copyright"><small>Copyright : RaiseTech</small></p>     
-            </footer>
-        </div>
+                </div>
 
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/gnav.js"></script>
+                <div class="l-pagination"> <!--ページ送り, WP-PageNaviプラグイン追加-->
+                    <section class="c-pagination">
+                        <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?> 
+                    </section>         
+                </div>
+            </main>   
+</div>               
+<?php get_footer(); ?>     
     </body>
     </html>

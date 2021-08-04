@@ -18,33 +18,41 @@
             &__title{
                 display: block;
                 color: $dark-gray;
-                font-size: 1.2rem;
+                font-size: 1.5rem; //wp化の時サイズ調整
                 font-weight: 500;
-                padding: 50px 0 45px 25px;
+                padding: 45px 0 40px 25px; //wp化の時サイズ調整
             }
-            &__menu__title{
+           
+            //----------------------------
+            //WP化ーナビゲーションメニュー
+            //----------------------------
+            .menu-item-type-taxonomy { 
+                padding: 0 0 25px 25px;            
                 >a{
                     color: $dark-gray;
-                    padding:25px;
                     font-family: 'mplus-1m';
                     font-weight: 600;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                 }
             }
-            &__menu__list{
-                padding: 15px;
-                &__item{
-                    >a{
-                        color: $dark-gray;
-                        padding-left: 20px;
-                        font-family: 'mplus-1m';
-                        font-weight:100;
-                        font-size: 0.8rem;
-                        line-height: 2.4;
-                        cursor: pointer;
-                    }
+            .sub-menu >li{
+                padding-top: 15px;
+                &:first-child{
+                    padding-top: 25px;
                 }
-            }         
+                &:last-child{
+                    padding-bottom: 10px;
+                }
+                >a{
+                    color: $dark-gray;
+                    padding-left: 15px;
+                    font-family: 'mplus-1m';
+                    font-weight:100;
+                    font-size: 1.0rem;
+                    //line-height: 2.4; 
+                    cursor: pointer;
+                }
+            }                      
         }//@include(PC)
     }//p-global-nav
 
@@ -85,46 +93,37 @@
                 width: 100%;
                 padding-top: 160px;
             }
-            
-            .p-global-nav__menu{
-                &__title{
-                    >a{
-                        color: $dark-gray;
-                        padding: 100px 40px;
-                        font-family: 'mplus-1m';
-                        font-weight: 600;
-                        font-size: 1.5rem;
-                    
-                        @include mq(tab){
-                            font-size: 1.2rem;
-                        }   
-                    }
-                }   
 
-                &__list{
-                    padding: 30px 0;
-                    @include mq(tab){
-                        padding: 18px 0;
-                    }
-                    &__item{
-                        >a{
-                            color: $dark-gray;
-                            padding-left: 60px;
-                            font-family: 'mplus-1m';
-                            font-weight:100;
-                            font-size: 1.2rem;
-                            line-height: 3rem;
-                            cursor: pointer;
-
-                            @include mq(tab){
-                                font-size: 1rem;
-                                line-height: 2.4;
-                            }
-                        }
-                    }
-                }//.is-open.p-global-nav__menu__list
-            }//.is-open.p-global-nav__menu  
-        }//.is-open.p-global-nav__menu
+            //----------------------------
+            //WP化ーナビゲーションメニュー
+            //----------------------------
+            .menu-item-type-taxonomy { 
+                padding: 0 0 25px 25px;            
+                >a{
+                    color: $dark-gray;
+                    font-family: 'mplus-1m';
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                }
+            }
+            .sub-menu >li{
+                padding-top: 15px;
+                &:first-child{
+                    padding-top: 25px;
+                }
+                &:last-child{
+                    padding-bottom: 10px;
+                }
+                >a{
+                    color: $dark-gray;
+                    padding-left: 15px;
+                    font-family: 'mplus-1m';
+                    font-weight:100;
+                    font-size: 1.0rem; 
+                    cursor: pointer;
+                }
+            }                        
+        }//.is-open
     }//.p-global-nav__menu
 }//.p-sidebar
 
