@@ -8,6 +8,7 @@
         <?php wp_head(); ?>
     </head>
 <body <?php body_class(); ?>> <!--ページごとに自動的に異なるクラス属性を出力-->
+<?php wp_body_open(); ?> <!--wp_body_openにフックしてコード出力--ページの表示では見えない要素、タグやメタデータなどの出力-->
     <div class="l-wrapper">
         <div id="fadeLayer"></div> <!--画面全体を覆うフェード用のレイヤ-->
         <div class="c-button--menu"> 

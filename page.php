@@ -19,6 +19,7 @@
                 else:
                     ?><p>表示する記事がありません</p>
                 <?php endif; ?>  
+                <?php wp_list_comments(); ?> <!--テーマチェックエラーのため追記-->
         </main>
 </div>
 <?php get_footer(); ?>

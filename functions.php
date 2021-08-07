@@ -1,11 +1,27 @@
 <?php
+
+    //============================================
+    // テーマを翻訳対応する
+    //============================================
+    function hamburger_theme_setup(){
+        load_theme_textdomain( 'hamburger', get_template_directory() . '/languages' );
+        }
+    add_action( 'after_setup_theme', 'hamburger_theme_setup' );
+
     //=================================================
     //テーマサポート
     //=================================================
-    add_theme_support( 'menus' ); //カスタムメニュー機能追加→管理画面にメニューという項目が表示
+    //テーマチェックでエラーがでるので非表示-->add_theme_support( 'menus' ); //カスタムメニュー機能追加→管理画面にメニューという項目が表示
     add_theme_support( 'title-tag' ); //ページ種類に応じてタイトルタグを自動的に表示
     add_theme_support('post-thumbnails'); //アイキャッチ画像の項目追加
     add_theme_support('automatic-feed-links');//フィードのlinkを自動出力する
+    add_theme_support( 'custom-header' );//ヘッダー画像として実装できる＝カスタムヘッダー（テーマチェックでエラーがでるので記述）
+    add_theme_support( 'wp-block-styles' );//ブロックエディター用のスタイルを有効化 (テーマチェックでエラーがでるので記述）
+    add_theme_support( "responsive-embeds" );//埋め込みしたコンテンツをレスポンシブ対応できる
+    add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );//コメントフォーム、検索フォーム、コメントリスト、ギャラリーでHTML5マークアップの使用を許可(テーマチェックでエラーがでるので記述)
+    add_theme_support( "custom-logo",);//カスタムロゴの機能を有効化(テーマチェックでエラーがでるので記述)
+    add_theme_support( "align-wide" );//alignwide / alignfull に対応=コンテンツ幅を広げたりフルにしたりする機能
+    add_theme_support( "custom-background");//背景色と背景画像のカスタマイズを提供
 
     //=================================================
     //タイトル出力
@@ -25,19 +41,21 @@
     //=================================================
 
     function hamburger_script() {
+
         //---------------
         //FontAwsome
         //---------------
-        wp_enqueue_script( 'FontAwesome', '//kit.fontawesome.com/9c4b047b8f.js', array(),'5.15.3',true); //スクリプトの読み込み位置（trueで/body前、falseで/head前, 初期値はfalse）
+
+        //CDNで読み込むとテーマチェックでエラーでるので書き直し
+        wp_enqueue_style('Font-Awesome', '//use.fontawesome.com/releases/v5.15.3/css/all.css',array());
         
-        //crossorigin=”anonymous” を付加するフィルターフック
-        add_filter('script_loader_tag', 'custom_script_loader_tag', 10, 2);
-        function custom_script_loader_tag($tag, $handle) {
-            if($handle !== 'FontAwesome') { //handleのところに、crossorigin="anonymous" を入れたいスクリプトの名前（wp_enqueue_script の第1引数,font-awesome)
-                return $tag;
-            }
-            return str_replace('></script>', ' crossorigin="anonymous"></script>', $tag);
-            }
+        
+        //wp_enqueue_script( 'FontAwesome', 'https://kit.fontawesome.com/9c4b047b8f.js', array(),'5.15.3',true); //スクリプトの読み込み位置（trueで/body前、falseで/head前, 初期値はfalse）
+        /*function wp_load_fontawesome() {
+            wp_enqueue_style( 'wpb-fa', get_stylesheet_directory_uri() . '/fontawesome-free-5.15.4-web/css/font-awesome.min.css' );
+        }
+        add_action( 'wp_enqueue_scripts', 'wp_load_fontawesome' )*/
+        
         
         //---------------
         //google-font
@@ -81,10 +99,10 @@
     //editor-style.cssの読み込み--->フロントのデザインをそのままビジュアルエディターで表現
     //=========================================================================
 
-    function Hamburger_theme_add_editor_styles() {
+    function hamburger_theme_add_editor_styles() {
         add_editor_style( get_template_directory_uri() . "/editor-style.css" );
     }
-    add_action( 'admin_init', 'Hamburger_theme_add_editor_styles' );
+    add_action( 'admin_init', 'hamburger_theme_add_editor_styles' );
 
 
     //==============================================
@@ -103,3 +121,50 @@
         return $search;
     }
     add_filter( 'posts_search', 'mycus_empty_and_blank_search_invalid_func', 10, 2 );
+
+    //------------------------------------------------------------------
+    //  テーマのコンテンツエリアのサイズ指定 (テーマチェックのエラーがでるので記述)
+    //------------------------------------------------------------------
+    if ( ! isset( $content_width ) ) {
+        $content_width = 960;
+    }
+
+    //-------------------------------------------------------------------------------------
+    // resister block style ＆ register_block_pattern (テーマチェックのエラーがでるので仮に記述)
+    //-------------------------------------------------------------------------------------
+    //WPブロックにカスタムスタイルを追加する//
+    function my_block_style(){
+        register_block_style(
+            'core/image',
+            array(
+                'name'         => 'drop-shadow',
+                'label'        => __( 'Drop Shadow', 'hamburger' ),
+                'inline_style' => '.wp-block-image.is-style-drop-shadow { box-shadow: rgb(128, 128, 128) 4px 4px 4px 2px; }',
+            )
+        );
+    }
+    function my_block_pattern(){
+        register_block_pattern(
+            'my-block-pattern',   //ブロックパターン名
+            array(
+                'title'   => 'ブロックパターンのタイトル',
+                'content' => 'ブロックHTML',
+            )
+        );
+    }
+    add_action( 'init', 'my_block_pattern' );
+
+    //--------------------------------------------------------------
+    //ウィジェットの機能を有効化 
+    //--------------------------------------------------------------
+    function my_theme_widgets_init() {
+        register_sidebar( array(
+          'name' => 'Main Sidebar',
+          'id' => 'main-sidebar',
+        ) );
+      }
+      add_action( 'widgets_init', 'my_theme_widgets_init' );
+        
+        
+        
+            

@@ -37,6 +37,16 @@
 
     &__search{
         display: flex;
+
+        //テーマチェックのエラーのため追加//
+        /* Text meant only for screen readers. */ 
+        .screen-reader-text {
+            clip: rect(1px, 1px, 1px, 1px);
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
     
         &-box{
             width: 14rem;
@@ -62,7 +72,8 @@
             }
 
             &.fa-search {
-                font-family: FontAwesome;
+                font-family: 'Font Awesome 5 Free'; //font-family指定しないとアイコン表示されなかった
+                font-weight: 900; //font-weight指定しないとアイコン表示されなかった
                 font-size: 1.7rem;
                 padding-left: 10px;
 

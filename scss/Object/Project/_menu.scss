@@ -60,4 +60,12 @@
             margin: 0 30px 50px 10px;
         }
     }
+
+    //テーマチェックのエラー解決するため追記
+    .wp-caption{
+        width: fit-content;
+      }
+    .wp-caption-text{
+        font-size: 2.3rem;
+      }
 }

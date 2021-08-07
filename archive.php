@@ -9,7 +9,7 @@
                     <h2>Menu:</h2>
                     <?php if(is_category()) : ?> <!--カテゴリーの場合-->
                     <p><?php single_cat_title( '', true ); ?></p> <!--カテゴリー名取得-->
-                    <? endif; ?>
+                    <?php endif;?>
                 </div>
     
                 <div class="l-main-wrapper--archive">
@@ -47,7 +47,7 @@
                 <div class="l-pagination"> <!--ページ送り, WP-PageNaviプラグイン追加-->
                     <section class="c-pagination">
                         <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?> 
-                    </section>         
+                    </section>        
                 </div>
             </main>
 </div>

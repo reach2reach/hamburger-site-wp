@@ -21,6 +21,7 @@
                             <?php if (isset($_GET['s']) && empty($_GET['s'])) {  //検索条件未入力時の場合
 	                        echo '検索条件が入力されていません。';?>
                             <p class="p-search__result">
+                            <?php the_tags(); ?> <!--タグを出力（テーマチェックでエラーがでるため記述）-->
                             <?php } else { 
                                 $str = $_GET['s']; // 検索文字列の取得
                                 $e_str = htmlspecialchars($str, ENT_QUOTES, "utf-8"); // 検索文字列のエスケープ処理
@@ -61,6 +62,7 @@
                         <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } ?> 
                     </section>         
                 </div>
+                <?php dynamic_sidebar( ); ?><!--テーマチェックエラーのため追記-->
             </main>   
 </div>               
 <?php get_footer(); ?>     
